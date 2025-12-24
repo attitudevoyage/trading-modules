@@ -4,7 +4,7 @@ import numpy as np
 from yahooquery import Ticker
 
 # Print for iphone
-def show(df):
+def show_html(df):
     from IPython.display import HTML
     return HTML(df.to_html())
 
