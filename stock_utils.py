@@ -3,6 +3,11 @@ import yfinance as yf
 import numpy as np
 from yahooquery import Ticker
 
+# Print for iphone
+def show(df):
+    from IPython.display import HTML
+    return HTML(df.to_html())
+
 # technical and fundamental cals
 def rsi_wilder(series, period=14):
     delta = series.diff()
