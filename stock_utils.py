@@ -4,9 +4,24 @@ import numpy as np
 from yahooquery import Ticker
 
 # Print for iphone
-def show_html(df):
+def show_html(df, height=400):
+    """Render a DataFrame as a scrollable HTML table with a frozen header."""
     from IPython.display import HTML
-    return HTML(df.to_html())
+
+    html = f"""
+    <div style="height:{height}px; overflow-y:auto; border:1px solid #ccc;">
+        <table style="border-collapse:collapse; width:100%;">
+            <thead style="position: sticky; top: 0; background-color: #f9f9f9; z-index: 1;">
+                {df.head(0).to_html(index=False).split('<thead>')[1].split('</thead>')[0]}
+            </thead>
+            <tbody>
+                {df.to_html(index=False).split('<tbody>')[1].split('</tbody>')[0]}
+            </tbody>
+        </table>
+    </div>
+    """
+
+    return HTML(html)
 
 # technical and fundamental cals
 def rsi_wilder(series, period=14):
