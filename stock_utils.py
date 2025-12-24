@@ -4,25 +4,10 @@ import numpy as np
 from yahooquery import Ticker
 
 # Print for iphone
-def show_html(df, height=400):
-    """Scrollable DataFrame with frozen header, preserving pandas' native styling."""
+def show_html(df):
+    """Render a DataFrame as a scrollable HTML table (great for mobile)."""
     from IPython.display import HTML
-
-    html = f"""
-    <div style="height:{height}px; overflow-y:auto; border:1px solid #ccc;">
-        <style>
-            table.dataframe thead th {{
-                position: sticky;
-                top: 0;
-                background-color: #f2f2f2;  /* pandas default light gray */
-                z-index: 2;
-            }}
-        </style>
-        {df.to_html()}
-    </div>
-    """
-
-    return HTML(html)
+    return HTML(df.to_html())
 
 # technical and fundamental cals
 def rsi_wilder(series, period=14):
