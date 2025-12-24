@@ -5,20 +5,20 @@ from yahooquery import Ticker
 
 # Print for iphone
 def show_html(df, height=400):
-    """Render a DataFrame as a scrollable HTML table with a frozen header, preserving default pandas styling."""
+    """Scrollable DataFrame with frozen header, preserving pandas' native styling."""
     from IPython.display import HTML
 
     html = f"""
     <div style="height:{height}px; overflow-y:auto; border:1px solid #ccc;">
         <style>
-            thead th {{
+            table.dataframe thead th {{
                 position: sticky;
                 top: 0;
-                background-color: white;
+                background-color: #f2f2f2;  /* pandas default light gray */
                 z-index: 2;
             }}
         </style>
-        {df.to_html(index=False)}
+        {df.to_html()}
     </div>
     """
 
